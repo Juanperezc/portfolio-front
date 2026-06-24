@@ -6,11 +6,8 @@ import {
   ArrowRight,
   Briefcase,
   FolderKanban,
-  Home,
-  LayoutGrid,
   Mail,
   Menu,
-  Sparkles,
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -37,11 +34,8 @@ export function SiteHeader({ locale, dictionary }: SiteHeaderProps) {
   const pathname = usePathname();
   const home = `/${locale}`;
   const links = [
-    { label: dictionary.nav.home, href: home, icon: Home },
     { label: dictionary.nav.about, href: `${home}#about`, icon: User },
     { label: dictionary.nav.projects, href: projectsPath(locale), icon: FolderKanban },
-    { label: dictionary.nav.skills, href: `${home}#skills`, icon: Sparkles },
-    { label: dictionary.nav.services, href: `${home}#services`, icon: LayoutGrid },
     { label: dictionary.nav.experience, href: `${home}#experience`, icon: Briefcase },
     { label: dictionary.nav.contact, href: `${home}#contact`, icon: Mail },
   ];

@@ -24,6 +24,14 @@ export function projectPath(locale: Locale, slug: string): string {
   return `${projectsPath(locale)}/${slug}`;
 }
 
+export function blogPath(locale: Locale): string {
+  return `/${locale}/blog`;
+}
+
+export function blogPostPath(locale: Locale, slug: string): string {
+  return `${blogPath(locale)}/${slug}`;
+}
+
 export function alternatePath(pathname: string, locale: Locale): string {
   const target = locale === "es" ? "en" : "es";
   const projectMatch = pathname.match(/^\/(es|en)\/(proyectos|projects)\/([^/]+)$/);
@@ -34,6 +42,15 @@ export function alternatePath(pathname: string, locale: Locale): string {
 
   if (/^\/(es|en)\/(proyectos|projects)$/.test(pathname)) {
     return projectsPath(target);
+  }
+
+  const blogPostMatch = pathname.match(/^\/(es|en)\/blog\/([^/]+)$/);
+  if (blogPostMatch) {
+    return blogPostPath(target, blogPostMatch[2]);
+  }
+
+  if (/^\/(es|en)\/blog$/.test(pathname)) {
+    return blogPath(target);
   }
 
   return `/${target}`;

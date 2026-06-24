@@ -42,6 +42,21 @@ Frontend del portfolio personal/profesional. Debe priorizar claridad, performanc
 - Definir metadata por pagina desde App Router.
 - Cuidar Core Web Vitals: imagenes optimizadas, CSS liviano y JS minimo en cliente.
 - No cargar trackers, fuentes o scripts externos sin necesidad.
+- Mantener `canonical` + `alternates.languages` (hreflang es/en/x-default), `sitemap.ts`, `robots.ts` y JSON-LD al agregar paginas o secciones nuevas.
+
+## Blog / Strapi (CMS)
+
+- El blog se nutre de Strapi (template oficial v5: coleccion `articles` con `cover`, `author`, `category` y dynamic zone `blocks`).
+- Toda la integracion vive en `src/lib/strapi.ts`. El token va en `STRAPI_API_TOKEN` (server-only, sin prefijo `NEXT_PUBLIC`); nunca exponerlo al cliente ni importar `strapi.ts` desde un Client Component (pasar datos ya resueltos como props).
+- Mostrar **solo articulos publicados** por defecto. `STRAPI_DRAFTS=true` es un modo preview opcional; en produccion debe quedar en `false`/vacio. No pasar `status=draft` salvo preview explicito.
+- Fetch con `next: { revalidate: 300 }` (ISR) y resiliente: si Strapi falla, devolver vacio sin romper el build.
+- URLs de media de Strapi Cloud son absolutas; igualmente normalizar con un helper y declarar el host en `images.remotePatterns` de `next.config.ts`.
+- El contenido `rich-text` viene en markdown: renderizar en servidor con `marked` y estilos `.article-body`.
+
+## Listas y keys (React)
+
+- Nunca usar como `key` un id que no sea unico en todo el array. En dynamic zones de Strapi los `id` de cada componente NO son unicos entre tipos distintos: usar una key compuesta (`${block.__component}-${index}`).
+- Evitar `key={index}` salvo listas estaticas sin reordenamiento.
 
 ## Calidad
 

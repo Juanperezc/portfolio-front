@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectDetailPage } from "@/components/project-detail-page";
-import { getDictionary, isLocale, locales } from "@/lib/i18n";
+import { getDictionary, isLocale, locales, projectPath } from "@/lib/i18n";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) => {
@@ -22,7 +22,33 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
   const project = getDictionary(locale).projects.find((item) => item.slug === slug);
-  return project ? { title: project.name, description: project.summary } : {};
+  if (!project) return {};
+  const title = `${project.name} — ${project.category}`;
+  return {
+    title: project.name,
+    description: project.summary,
+    alternates: {
+      canonical: projectPath(locale, slug),
+      languages: {
+        es: projectPath("es", slug),
+        en: projectPath("en", slug),
+        "x-default": projectPath("es", slug),
+      },
+    },
+    openGraph: {
+      title,
+      description: project.summary,
+      url: projectPath(locale, slug),
+      type: "article",
+      images: [{ url: project.image, alt: `${project.name} — ${project.category}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: project.summary,
+      images: [project.image],
+    },
+  };
 }
 
 export default async function DetailPage({

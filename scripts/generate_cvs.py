@@ -146,33 +146,6 @@ def build(locale: str):
         job.append(Spacer(1, 3 * mm))
         story.append(KeepTogether(job))
 
-    story += section("Proyectos seleccionados" if is_es else "Selected projects", st)
-    project_cells = []
-    for project in data["projects"][:4]:
-        text = (
-            f'<b><font color="#F8FAFC">{project["name"]}</font></b><br/>'
-            f'<font color="#38BDF8">{project["category"]}</font><br/>'
-            f'{project["summary"]}<br/>'
-            f'<font color="#94A3B8">{" · ".join(project["tags"])}</font>'
-        )
-        project_cells.append(Paragraph(text, st["small"]))
-    project_table = Table(
-        [project_cells[:2], project_cells[2:]],
-        colWidths=[doc.width / 2 - 3 * mm] * 2,
-        hAlign="LEFT",
-    )
-    project_table.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, -1), CARD),
-        ("BOX", (0, 0), (-1, -1), 0.5, LINE),
-        ("INNERGRID", (0, 0), (-1, -1), 0.5, LINE),
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 7),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 7),
-        ("TOPPADDING", (0, 0), (-1, -1), 7),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
-    ]))
-    story.append(project_table)
-
     story += section("Tecnologías" if is_es else "Technologies", st)
     skill_rows = []
     for group in data["skills"]["groups"]:

@@ -8,6 +8,7 @@
     "skills": "Mis skills",
     "services": "Servicios",
     "experience": "Experiencia",
+    "blog": "Blog",
     "contact": "Contacto",
     "cta": "Trabajemos juntos",
     "menu": "Abrir menú"
@@ -116,7 +117,24 @@
     "tag": "¿Qué construyo?",
     "title": "Servicios",
     "showAll": "Ver todos",
-    "items": ["Desarrollo SaaS", "Plataformas Travel Tech", "Sistemas de reservas", "Dashboards personalizados", "Automatización con IA", "Flujos CRM / WhatsApp", "Integraciones de pago", "Landing pages", "Desarrollo de MVP", "Consultoría técnica", "Herramientas internas", "Integraciones de APIs", "Plataformas Legal Tech", "QA y automatización", "Gestión de subvenciones", "Plataformas comunitarias"]
+    "items": [
+      ["Desarrollo SaaS", "Productos multi-tenant con suscripciones, paneles y facturación."],
+      ["Plataformas Travel Tech", "Búsqueda, reservas e integraciones con aerolíneas y GDS."],
+      ["Sistemas de reservas", "Disponibilidad en tiempo real, pagos y gestión de cupos."],
+      ["Dashboards personalizados", "Paneles con métricas, reportes y permisos por rol."],
+      ["Automatización con IA", "Flujos inteligentes que ahorran horas de trabajo manual."],
+      ["Flujos CRM / WhatsApp", "Captación, seguimiento y mensajería automatizada de leads."],
+      ["Integraciones de pago", "Stripe, Mercadopago y métodos locales, listos para cobrar."],
+      ["Landing pages", "Páginas rápidas y optimizadas para conversión y SEO."],
+      ["Desarrollo de MVP", "De la idea a un producto funcional en semanas, no meses."],
+      ["Consultoría técnica", "Arquitectura, performance y decisiones de stack."],
+      ["Herramientas internas", "Apps a medida para automatizar la operación de tu equipo."],
+      ["Integraciones de APIs", "Conecto servicios de terceros con tu plataforma."],
+      ["Plataformas Legal Tech", "CRM jurídico, expedientes, documentos y facturación."],
+      ["QA y automatización", "Pruebas y pipelines para lanzar con confianza."],
+      ["Gestión de subvenciones", "Solicitudes multi-paso y colaboración entre financiadores."],
+      ["Plataformas comunitarias", "Eventos, RSVP, check-in y experiencias sociales."]
+    ]
   },
   "experience": {
     "tag": "Trayectoria",
@@ -256,7 +274,9 @@
     "projectType": "Tipo de proyecto",
     "message": "Mensaje",
     "send": "Enviar mensaje",
+    "sending": "Enviando...",
     "sent": "¡Enviado!",
+    "error": "No se pudo enviar. Escríbeme a juanluisperezc1996@gmail.com",
     "namePlaceholder": "Tu nombre",
     "emailPlaceholder": "tu@email.com",
     "companyPlaceholder": "Empresa (opcional)",
@@ -292,6 +312,16 @@
     "outcomes": "Resultados",
     "role": "Mi rol",
     "year": "Periodo"
+  },
+  "blog": {
+    "tag": "Blog",
+    "title": "Notas y artículos",
+    "description": "Aprendizajes sobre desarrollo full-stack, SaaS, Travel Tech y producto digital.",
+    "readMore": "Leer artículo",
+    "back": "Volver al blog",
+    "empty": "Pronto publicaré nuevos artículos. Vuelve en unos días.",
+    "by": "Por",
+    "all": "Todos los artículos"
   },
   "projects": [
     {

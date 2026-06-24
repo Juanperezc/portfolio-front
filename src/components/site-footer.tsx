@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CvDialog } from "@/components/cv-dialog";
-import { projectPath, projectsPath, type Dictionary, type Locale } from "@/lib/i18n";
+import { blogPath, projectPath, projectsPath, type Dictionary, type Locale } from "@/lib/i18n";
 
 export function SiteFooter({
   locale,
@@ -43,6 +43,7 @@ export function SiteFooter({
               [dictionary.nav.skills, `/${locale}#skills`],
               [dictionary.nav.services, `/${locale}#services`],
               [dictionary.nav.experience, `/${locale}#experience`],
+              [dictionary.nav.blog, blogPath(locale)],
             ]}
           />
           <FooterColumn

@@ -23,6 +23,7 @@ import {
   Languages,
   Layout,
   Layers,
+  Loader2,
   Linkedin,
   Mail,
   MapPin,
@@ -52,8 +53,11 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { CvDialog } from "@/components/cv-dialog";
 import {
+  blogPath,
+  blogPostPath,
   projectPath,
   projectsPath,
   type Dictionary,
@@ -72,34 +76,58 @@ const socialLinks = [
 // Fotos de viajes para el collage del about. El `gradient` es fallback si falta una imagen.
 const aboutGallery: { src: string; alt: string; span: string; gradient: string }[] = [
   { src: "/portfolio-assets/about/1-santorini.webp", alt: "Juan Perez en Santorini, Grecia", span: "col-span-2 row-span-2", gradient: "linear-gradient(135deg,#0369A1,#38BDF8)" },
-  { src: "/portfolio-assets/about/2-athens.webp", alt: "Juan Perez en Atenas, Grecia", span: "", gradient: "linear-gradient(135deg,#065F46,#34D399)" },
+  { src: "/portfolio-assets/about/2-budapest.webp", alt: "Juan Perez en Budapest, Hungría", span: "", gradient: "linear-gradient(135deg,#065F46,#34D399)" },
   { src: "/portfolio-assets/about/3-rome.webp", alt: "Juan Perez en el Coliseo de Roma, Italia", span: "", gradient: "linear-gradient(135deg,#5B21B6,#A78BFA)" },
   { src: "/portfolio-assets/about/4-alicante.webp", alt: "Juan Perez en Alicante, España", span: "", gradient: "linear-gradient(135deg,#92400E,#F59E0B)" },
-  { src: "/portfolio-assets/about/5-porto.webp", alt: "Juan Perez en Oporto, Portugal", span: "", gradient: "linear-gradient(135deg,#0E7490,#22D3EE)" },
+  { src: "/portfolio-assets/about/5-sofia.webp", alt: "Juan Perez en Sofía, Bulgaria", span: "", gradient: "linear-gradient(135deg,#0E7490,#22D3EE)" },
 ];
+
+type BlogTeaser = {
+  slug: string;
+  title: string;
+  description: string;
+  category: string | null;
+  date: string;
+  cover: string | null;
+};
 
 export function HomePage({
   locale,
   dictionary,
+  latestPosts,
 }: {
   locale: Locale;
   dictionary: Dictionary;
+  latestPosts: BlogTeaser[];
 }) {
   const [slide, setSlide] = useState(0);
   const [experiencePage, setExperiencePage] = useState(0);
   const [showAllServices, setShowAllServices] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
   const featured = dictionary.projects.slice(0, 3);
   const visibleExperience = dictionary.experience.items.slice(experiencePage * 4, experiencePage * 4 + 4);
   const experiencePageCount = Math.ceil(dictionary.experience.items.length / 4);
   const visibleServices = showAllServices ? dictionary.services.items : dictionary.services.items.slice(0, 8);
   const activeProject = featured[slide];
 
-  function submit(event: React.FormEvent<HTMLFormElement>) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    event.currentTarget.reset();
-    setSent(true);
-    window.setTimeout(() => setSent(false), 4000);
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    setStatus("sending");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("request failed");
+      form.reset();
+      setStatus("sent");
+      window.setTimeout(() => setStatus("idle"), 6000);
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -300,19 +328,31 @@ export function HomePage({
             <SectionBadge accent>{dictionary.services.tag}</SectionBadge>
             <h2 className="font-display text-4xl font-black lg:text-5xl">{dictionary.services.title}</h2>
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {visibleServices.map((service, index) => {
-              const Icon = serviceIcons[index];
-              return (
-                <Card key={service} className="card-glow border-border bg-card">
-                  <CardContent className="flex items-start gap-3 p-5">
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-secondary"><Icon className="size-4 text-primary" /></span>
-                    <span className="pt-0.5 text-sm font-medium text-muted-foreground">{service}</span>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          <TooltipProvider>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {visibleServices.map(([service, detail], index) => {
+                const Icon = serviceIcons[index];
+                return (
+                  <Tooltip key={service}>
+                    <TooltipTrigger asChild>
+                      <Card
+                        tabIndex={0}
+                        className="card-glow group/srv cursor-default border-border bg-card outline-none transition focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      >
+                        <CardContent className="flex items-start gap-3 p-5">
+                          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-secondary transition-colors duration-200 group-hover/srv:bg-primary">
+                            <Icon className="size-4 text-primary transition-colors duration-200 group-hover/srv:text-primary-foreground" />
+                          </span>
+                          <span className="pt-0.5 text-sm font-medium text-muted-foreground transition-colors duration-200 group-hover/srv:text-foreground">{service}</span>
+                        </CardContent>
+                      </Card>
+                    </TooltipTrigger>
+                    <TooltipContent>{detail}</TooltipContent>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </TooltipProvider>
           {!showAllServices && (
             <div className="mt-8 text-center">
               <Button variant="outline" onClick={() => setShowAllServices(true)}>{dictionary.services.showAll}<ChevronDown /></Button>
@@ -373,7 +413,46 @@ export function HomePage({
         </div>
       </section>
 
-      <ContactSection dictionary={dictionary} onSubmit={submit} sent={sent} />
+      {latestPosts.length > 0 && (
+        <section id="blog" className="dot-grid py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <div className="space-y-3">
+                <SectionBadge>{dictionary.blog.tag}</SectionBadge>
+                <h2 className="font-display text-4xl font-black lg:text-5xl">{dictionary.blog.title}</h2>
+              </div>
+              <Button asChild variant="ghost" className="hidden text-primary sm:flex">
+                <Link href={blogPath(locale)}>{dictionary.blog.all}<ChevronRight /></Link>
+              </Button>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestPosts.map((post) => (
+                <Link key={post.slug} href={blogPostPath(locale, post.slug)} className="card-glow group/post flex flex-col overflow-hidden rounded-2xl border border-border bg-card">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-background">
+                    {post.cover ? (
+                      <Image src={post.cover} alt={post.title} fill sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover/post:scale-105" />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+                    )}
+                    {post.category && <Badge className="absolute left-3 top-3 bg-background/80 text-foreground backdrop-blur">{post.category}</Badge>}
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    {post.date && <span className="text-xs uppercase tracking-wider text-muted-foreground">{post.date}</span>}
+                    <h3 className="mt-2 font-display text-xl font-bold leading-snug transition-colors group-hover/post:text-primary">{post.title}</h3>
+                    <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">{dictionary.blog.readMore}<ArrowRight className="size-4 transition-transform group-hover/post:translate-x-1" /></span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 text-center sm:hidden">
+              <Button asChild variant="outline"><Link href={blogPath(locale)}>{dictionary.blog.all}<ChevronRight /></Link></Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <ContactSection dictionary={dictionary} onSubmit={submit} status={status} />
     </main>
   );
 }
@@ -444,7 +523,9 @@ function ProjectFeature({ locale, dictionary, project }: { locale: Locale; dicti
   );
 }
 
-function ContactSection({ dictionary, onSubmit, sent }: { dictionary: Dictionary; onSubmit: (event: React.FormEvent<HTMLFormElement>) => void; sent: boolean }) {
+type FormStatus = "idle" | "sending" | "sent" | "error";
+
+function ContactSection({ dictionary, onSubmit, status }: { dictionary: Dictionary; onSubmit: (event: React.FormEvent<HTMLFormElement>) => void; status: FormStatus }) {
   return (
     <section id="contact" className="dot-grid py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -518,7 +599,19 @@ function ContactSection({ dictionary, onSubmit, sent }: { dictionary: Dictionary
                   </Field>
                 </div>
                 <Field label={dictionary.contact.message}><Textarea name="message" required rows={4} placeholder={dictionary.contact.messagePlaceholder} /></Field>
-                <Button type="submit" size="lg" className="w-full font-bold">{sent ? <><Check />{dictionary.contact.sent}</> : <>{dictionary.contact.send}<ArrowRight /></>}</Button>
+                <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+                <Button type="submit" size="lg" disabled={status === "sending"} className="w-full font-bold">
+                  {status === "sending" ? (
+                    <><Loader2 className="animate-spin" />{dictionary.contact.sending}</>
+                  ) : status === "sent" ? (
+                    <><Check />{dictionary.contact.sent}</>
+                  ) : (
+                    <>{dictionary.contact.send}<ArrowRight /></>
+                  )}
+                </Button>
+                {status === "error" && (
+                  <p role="alert" className="text-center text-sm text-red-400">{dictionary.contact.error}</p>
+                )}
               </form>
             </CardContent>
           </Card>

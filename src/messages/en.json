@@ -8,6 +8,7 @@
     "skills": "My skills",
     "services": "Services",
     "experience": "Experience",
+    "blog": "Blog",
     "contact": "Contact",
     "cta": "Work with me",
     "menu": "Open menu"
@@ -116,7 +117,24 @@
     "tag": "What I build",
     "title": "Services",
     "showAll": "View all",
-    "items": ["SaaS development", "Travel Tech platforms", "Booking systems", "Custom dashboards", "AI automation", "CRM / WhatsApp workflows", "Payment integrations", "Landing pages", "MVP development", "Technical consulting", "Internal tools", "API integrations", "Legal Tech platforms", "QA and automation", "Grant management", "Community platforms"]
+    "items": [
+      ["SaaS development", "Multi-tenant products with subscriptions, dashboards and billing."],
+      ["Travel Tech platforms", "Search, booking and airline/GDS integrations."],
+      ["Booking systems", "Real-time availability, payments and inventory management."],
+      ["Custom dashboards", "Panels with metrics, reports and role-based access."],
+      ["AI automation", "Smart workflows that save hours of manual work."],
+      ["CRM / WhatsApp workflows", "Lead capture, follow-up and automated messaging."],
+      ["Payment integrations", "Stripe, Mercadopago and local methods, ready to charge."],
+      ["Landing pages", "Fast pages optimized for conversion and SEO."],
+      ["MVP development", "From idea to a working product in weeks, not months."],
+      ["Technical consulting", "Architecture, performance and stack decisions."],
+      ["Internal tools", "Custom apps to automate your team's operations."],
+      ["API integrations", "I connect third-party services with your platform."],
+      ["Legal Tech platforms", "Legal CRM, case files, documents and billing."],
+      ["QA and automation", "Testing and pipelines to ship with confidence."],
+      ["Grant management", "Multi-step applications and funder collaboration."],
+      ["Community platforms", "Events, RSVP, check-in and social experiences."]
+    ]
   },
   "experience": {
     "tag": "Track record",
@@ -256,7 +274,9 @@
     "projectType": "Project type",
     "message": "Message",
     "send": "Send message",
+    "sending": "Sending...",
     "sent": "Sent!",
+    "error": "Couldn't send. Email me at juanluisperezc1996@gmail.com",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "you@email.com",
     "companyPlaceholder": "Company (optional)",
@@ -292,6 +312,16 @@
     "outcomes": "Outcomes",
     "role": "My role",
     "year": "Period"
+  },
+  "blog": {
+    "tag": "Blog",
+    "title": "Notes & articles",
+    "description": "Learnings on full-stack development, SaaS, Travel Tech and digital product.",
+    "readMore": "Read article",
+    "back": "Back to blog",
+    "empty": "New articles coming soon. Check back in a few days.",
+    "by": "By",
+    "all": "All articles"
   },
   "projects": [
     {
