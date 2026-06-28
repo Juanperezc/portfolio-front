@@ -73,13 +73,12 @@ const socialLinks = [
   { icon: Mail, label: "Email", value: "juanluisperezc1996@gmail.com", href: "mailto:juanluisperezc1996@gmail.com", color: "#EA4335" },
 ] as const;
 
-// Fotos de viajes para el collage del about. El `gradient` es fallback si falta una imagen.
-const aboutGallery: { src: string; alt: string; span: string; gradient: string }[] = [
-  { src: "/portfolio-assets/about/1-santorini.webp", alt: "Juan Perez en Santorini, Grecia", span: "col-span-2 row-span-2", gradient: "linear-gradient(135deg,#0369A1,#38BDF8)" },
-  { src: "/portfolio-assets/about/2-budapest.webp", alt: "Juan Perez en Budapest, Hungría", span: "", gradient: "linear-gradient(135deg,#065F46,#34D399)" },
-  { src: "/portfolio-assets/about/3-rome.webp", alt: "Juan Perez en el Coliseo de Roma, Italia", span: "", gradient: "linear-gradient(135deg,#5B21B6,#A78BFA)" },
-  { src: "/portfolio-assets/about/4-alicante.webp", alt: "Juan Perez en Alicante, España", span: "", gradient: "linear-gradient(135deg,#92400E,#F59E0B)" },
-  { src: "/portfolio-assets/about/5-sofia.webp", alt: "Juan Perez en Sofía, Bulgaria", span: "", gradient: "linear-gradient(135deg,#0E7490,#22D3EE)" },
+const aboutGallery: { src: string; alt: string; label: string; span: string; accent: string; gradient: string }[] = [
+  { src: "/portfolio-assets/about/1-santorini.webp", alt: "Juan Perez en Santorini, Grecia", label: "Santorini", span: "col-span-2 row-span-2", accent: "#38BDF8", gradient: "linear-gradient(135deg,#0369A1,#38BDF8)" },
+  { src: "/portfolio-assets/about/2-budapest.webp", alt: "Juan Perez en Budapest, Hungría", label: "Budapest", span: "", accent: "#34D399", gradient: "linear-gradient(135deg,#065F46,#34D399)" },
+  { src: "/portfolio-assets/about/3-rome.webp", alt: "Juan Perez en el Coliseo de Roma, Italia", label: "Roma", span: "", accent: "#A78BFA", gradient: "linear-gradient(135deg,#5B21B6,#A78BFA)" },
+  { src: "/portfolio-assets/about/4-alicante.webp", alt: "Juan Perez en Alicante, España", label: "Alicante", span: "", accent: "#F59E0B", gradient: "linear-gradient(135deg,#92400E,#F59E0B)" },
+  { src: "/portfolio-assets/about/5-sofia.webp", alt: "Juan Perez en Sofía, Bulgaria", label: "Sofia", span: "", accent: "#22D3EE", gradient: "linear-gradient(135deg,#0E7490,#22D3EE)" },
 ];
 
 type BlogTeaser = {
@@ -155,13 +154,13 @@ export function HomePage({
             </div>
             <p className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">{dictionary.hero.description}</p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="font-bold glow-sky">
+              <Button asChild size="lg" className="neon-button font-bold">
                 <Link href={projectsPath(locale)}>{dictionary.hero.primary}<ArrowRight className="size-4" /></Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="font-bold">
+              <Button asChild size="lg" variant="outline" className="neon-button-coral font-bold">
                 <Link href={`/${locale}#contact`}>{dictionary.hero.secondary}</Link>
               </Button>
-              <CvDialog dictionary={dictionary} triggerLabel={dictionary.hero.download} />
+              <CvDialog dictionary={dictionary} triggerLabel={dictionary.hero.download} triggerClassName="neon-button-ghost font-bold" />
             </div>
             <div className="flex flex-wrap gap-2 pt-2">
               {techBadges.map((technology) => (
@@ -173,58 +172,78 @@ export function HomePage({
         </div>
       </section>
 
-      <section id="about" className="py-24 lg:py-32">
-        <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="space-y-6">
-            <SectionBadge>{dictionary.about.tag}</SectionBadge>
-            <h2 className="font-display text-4xl font-black lg:text-5xl">{dictionary.about.title}</h2>
-            {dictionary.about.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-lg leading-relaxed text-muted-foreground">{paragraph}</p>
-            ))}
-            <div className="flex flex-wrap gap-3 pt-2">
+      <section id="about" className="about-stage relative overflow-hidden py-24 lg:py-32">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+          <div className="space-y-7">
+            <div className="space-y-4">
+              <SectionBadge>{dictionary.about.tag}</SectionBadge>
+              <h2 className="hero-gradient font-display text-4xl font-black leading-tight lg:text-5xl">{dictionary.about.title}</h2>
+            </div>
+            <div className="space-y-4">
+              {dictionary.about.paragraphs.map((paragraph, index) => (
+                <p
+                  key={paragraph}
+                  className={index === 0 ? "about-lead text-lg leading-relaxed text-foreground" : "text-lg leading-relaxed text-muted-foreground"}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3 pt-1">
               {socialLinks.map(({ icon: Icon, label, href, color }) => (
-                <Button key={label} asChild size="sm" variant="outline" className="bg-card/50 font-semibold hover:bg-card" style={{ borderColor: `${color}66`, color }}>
+                <Button
+                  key={label}
+                  asChild
+                  size="sm"
+                  variant="outline"
+                  className="neon-social bg-card/50 font-semibold hover:bg-card"
+                  style={{ "--neon-color": color, borderColor: `${color}66`, color } as React.CSSProperties}
+                >
                   <a href={href} target="_blank" rel="noreferrer"><Icon className="size-4" />{label}</a>
                 </Button>
               ))}
             </div>
-          </div>
-          <div className="space-y-4">
-            {dictionary.about.cards.map((item, index) => {
-              const Icon = [Code2, Layers, Plane][index];
-              const color = ["#38BDF8", "#34D399", "#A78BFA"][index];
-              return (
-                <Card key={item.title} className="card-glow border-border bg-card">
-                  <CardContent className="flex items-start gap-4 p-6">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl" style={{ background: `${color}18`, border: `1px solid ${color}30` }}>
-                      <Icon className="size-5" style={{ color }} />
+            <div className="grid gap-3 pt-2 sm:grid-cols-3">
+              {dictionary.about.cards.map((item, index) => {
+                const Icon = [Code2, Layers, Plane][index];
+                const color = ["#38BDF8", "#34D399", "#F59E0B"][index];
+                return (
+                  <div
+                    key={item.title}
+                    className="about-mini-card pop-in rounded-xl border bg-card/60 p-4"
+                    style={{ "--about-accent": color, animationDelay: `${index * 75}ms` } as React.CSSProperties}
+                  >
+                    <span className="mb-3 flex size-10 items-center justify-center rounded-lg">
+                      <Icon className="size-5" />
                     </span>
-                    <div>
-                      <h3 className="font-display font-bold">{item.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                    <h3 className="font-display text-sm font-bold">{item.title}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:mt-16 lg:px-8">
-          <div className="grid auto-rows-[8.5rem] grid-cols-2 gap-3 sm:auto-rows-[10rem] sm:grid-cols-4">
+          <div className="relative">
+            <div className="about-orbit absolute -inset-4 rounded-[2rem]" />
+            <div className="relative grid auto-rows-[8.25rem] grid-cols-2 gap-3 sm:auto-rows-[10rem] sm:grid-cols-4 lg:auto-rows-[9rem]">
             {aboutGallery.map((tile, index) => (
               <div
-                key={index}
-                style={{ animationDelay: `${index * 60}ms` }}
-                className={`pop-in group/ph relative overflow-hidden rounded-2xl border border-border ${tile.span}`}
+                key={tile.src}
+                style={{ "--photo-accent": tile.accent, "--tile-enter-delay": `${index * 80}ms` } as React.CSSProperties}
+                className={`about-photo-tile pop-in group/ph relative overflow-hidden rounded-2xl border ${tile.span}`}
               >
                 {tile.src ? (
-                  <Image src={tile.src} alt={tile.alt} fill sizes="(max-width:640px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover/ph:scale-105" />
+                  <Image src={tile.src} alt={tile.alt} fill sizes="(max-width:640px) 50vw, (max-width:1024px) 25vw, 18vw" className="object-cover transition-transform duration-700 group-hover/ph:scale-110" />
                 ) : (
                   <span className="absolute inset-0" style={{ background: tile.gradient }} />
                 )}
-                <span className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/ph:opacity-100" />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover/ph:opacity-95" />
+                <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/35 px-3 py-1 font-mono text-[0.68rem] font-bold uppercase tracking-wider text-white/90 opacity-0 backdrop-blur transition-all duration-300 group-hover/ph:translate-y-0 group-hover/ph:opacity-100">
+                  {tile.label}
+                </span>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>
