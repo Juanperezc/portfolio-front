@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
+import { absoluteUrl, homeAlternates, SEO_KEYWORDS } from "@/lib/seo";
 import { OG_IMAGE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -30,19 +31,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Juan Luis Pérez", url: SITE_URL }],
   creator: "Juan Luis Pérez",
   publisher: "Juan Luis Pérez",
-  keywords: [
-    "Juan Pérez",
-    "Full Stack Developer",
-    "Laravel developer",
-    "React developer",
-    "Next.js developer",
-    "TypeScript",
-    "SaaS",
-    "Travel Tech",
-    "Desarrollador web",
-    "Software engineer",
-  ],
+  keywords: [...SEO_KEYWORDS],
   category: "technology",
+  alternates: {
+    canonical: absoluteUrl("/es"),
+    languages: homeAlternates(),
+  },
   formatDetection: { telephone: false, email: false, address: false },
   robots: {
     index: true,
@@ -60,16 +54,18 @@ export const metadata: Metadata = {
     description:
       "10+ años construyendo plataformas SaaS, Travel Tech y enterprise con Laravel, React y TypeScript.",
     type: "website",
+    url: absoluteUrl("/es"),
     siteName: "Juan Pérez — Portfolio",
     locale: "es_AR",
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Juan Pérez — Full Stack Developer" }],
+    alternateLocale: "en_US",
+    images: [{ url: absoluteUrl(OG_IMAGE), width: 1200, height: 630, alt: "Juan Pérez — Full Stack Developer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Juan Pérez — Full Stack Developer",
     description:
       "10+ años construyendo plataformas SaaS, Travel Tech y enterprise con Laravel, React y TypeScript.",
-    images: [OG_IMAGE],
+    images: [absoluteUrl(OG_IMAGE)],
   },
 };
 

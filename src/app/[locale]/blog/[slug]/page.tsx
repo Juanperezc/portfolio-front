@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogArticlePage } from "@/components/blog-article-page";
 import { blogPostPath, getDictionary, isLocale, locales } from "@/lib/i18n";
+import { absoluteUrl, blogPostAlternates, languageCode, SEO_KEYWORDS } from "@/lib/seo";
 import { OG_IMAGE } from "@/lib/site";
 import { getArticle, getArticleSlugs, strapiMediaUrl } from "@/lib/strapi";
 
@@ -25,27 +26,34 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.description,
+    authors: [{ name: article.author?.name ?? "Juan Pérez" }],
+    keywords: [
+      ...SEO_KEYWORDS,
+      article.title,
+      article.category?.name ?? "Full Stack Development",
+      "blog",
+      "software engineering",
+    ],
     alternates: {
-      canonical: blogPostPath(locale, slug),
-      languages: {
-        es: blogPostPath("es", slug),
-        en: blogPostPath("en", slug),
-        "x-default": blogPostPath("es", slug),
-      },
+      canonical: absoluteUrl(blogPostPath(locale, slug)),
+      languages: blogPostAlternates(slug),
     },
     openGraph: {
       title: article.title,
       description: article.description,
-      url: blogPostPath(locale, slug),
+      url: absoluteUrl(blogPostPath(locale, slug)),
       type: "article",
+      locale: languageCode(locale).replace("-", "_"),
       publishedTime: article.publishedAt ?? undefined,
-      images: [{ url: cover, alt: article.cover?.alternativeText || article.title }],
+      authors: [article.author?.name ?? "Juan Pérez"],
+      tags: [article.category?.name, "Full Stack", "SaaS", "Travel Tech"].filter(Boolean) as string[],
+      images: [{ url: absoluteUrl(cover), alt: article.cover?.alternativeText || article.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: [cover],
+      images: [absoluteUrl(cover)],
     },
   };
 }

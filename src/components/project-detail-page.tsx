@@ -4,7 +4,9 @@ import { ArrowLeft, Check, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { projectsPath, type Dictionary, type Locale, type Project } from "@/lib/i18n";
+import { projectPath, projectsPath, type Dictionary, type Locale, type Project } from "@/lib/i18n";
+import { absoluteUrl, languageCode } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 export function ProjectDetailPage({
   locale,
@@ -15,8 +17,25 @@ export function ProjectDetailPage({
   dictionary: Dictionary;
   project: Project;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${absoluteUrl(projectPath(locale, project.slug))}#project`,
+    name: project.name,
+    description: project.summary,
+    url: absoluteUrl(projectPath(locale, project.slug)),
+    image: absoluteUrl(project.image),
+    inLanguage: languageCode(locale),
+    creator: { "@id": `${SITE_URL}/#person` },
+    keywords: project.tags.join(", "),
+    dateCreated: project.year,
+    genre: project.category,
+    sameAs: project.url || undefined,
+  };
+
   return (
     <main className="min-h-screen pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="dot-grid border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <Button asChild variant="ghost" className="mb-10 text-muted-foreground">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectDetailPage } from "@/components/project-detail-page";
 import { getDictionary, isLocale, locales, projectPath } from "@/lib/i18n";
+import { absoluteUrl, languageCode, projectAlternates, SEO_KEYWORDS } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) => {
@@ -27,26 +28,24 @@ export async function generateMetadata({
   return {
     title: project.name,
     description: project.summary,
+    keywords: [...SEO_KEYWORDS, project.name, project.category, project.role, ...project.tags],
     alternates: {
-      canonical: projectPath(locale, slug),
-      languages: {
-        es: projectPath("es", slug),
-        en: projectPath("en", slug),
-        "x-default": projectPath("es", slug),
-      },
+      canonical: absoluteUrl(projectPath(locale, slug)),
+      languages: projectAlternates(slug),
     },
     openGraph: {
       title,
       description: project.summary,
-      url: projectPath(locale, slug),
+      url: absoluteUrl(projectPath(locale, slug)),
       type: "article",
-      images: [{ url: project.image, alt: `${project.name} — ${project.category}` }],
+      locale: languageCode(locale).replace("-", "_"),
+      images: [{ url: absoluteUrl(project.image), alt: `${project.name} — ${project.category}` }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: project.summary,
-      images: [project.image],
+      images: [absoluteUrl(project.image)],
     },
   };
 }

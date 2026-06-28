@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPage } from "@/components/blog-page";
 import { blogPath, getDictionary, isLocale, locales } from "@/lib/i18n";
+import { absoluteUrl, blogAlternates, languageCode, SEO_KEYWORDS } from "@/lib/seo";
 import { OG_IMAGE } from "@/lib/site";
 import { getArticles } from "@/lib/strapi";
 
@@ -19,21 +20,25 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const { title, description } = getDictionary(locale).blog;
+  const hasArticles = (await getArticles()).length > 0;
   return {
     title,
     description,
+    keywords: [...SEO_KEYWORDS, "blog desarrollo web", "full-stack blog", "SaaS articles", "Travel Tech articles"],
+    robots: hasArticles ? undefined : { index: false, follow: true },
     alternates: {
-      canonical: blogPath(locale),
-      languages: { es: blogPath("es"), en: blogPath("en"), "x-default": blogPath("es") },
+      canonical: absoluteUrl(blogPath(locale)),
+      languages: blogAlternates(),
     },
     openGraph: {
       title,
       description,
-      url: blogPath(locale),
+      url: absoluteUrl(blogPath(locale)),
       type: "website",
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
+      locale: languageCode(locale).replace("-", "_"),
+      images: [{ url: absoluteUrl(OG_IMAGE), width: 1200, height: 630, alt: title }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE] },
+    twitter: { card: "summary_large_image", title, description, images: [absoluteUrl(OG_IMAGE)] },
   };
 }
 

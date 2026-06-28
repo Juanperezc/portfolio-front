@@ -5,6 +5,7 @@ import { marked } from "marked";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/components/blog-page";
 import { blogPath, blogPostPath, type Dictionary, type Locale } from "@/lib/i18n";
+import { absoluteUrl, languageCode } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { strapiMediaUrl, type Article, type ArticleBlock } from "@/lib/strapi";
 
@@ -91,12 +92,13 @@ export async function BlogArticlePage({
     "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
-    image: cover ? [cover] : undefined,
+    image: cover ? [absoluteUrl(cover)] : undefined,
     datePublished: article.publishedAt ?? article.createdAt,
     dateModified: article.updatedAt,
-    inLanguage: locale === "es" ? "es-AR" : "en-US",
-    mainEntityOfPage: `${SITE_URL}${blogPostPath(locale, article.slug)}`,
-    author: { "@type": "Person", name: article.author?.name ?? "Juan Pérez" },
+    inLanguage: languageCode(locale),
+    mainEntityOfPage: absoluteUrl(blogPostPath(locale, article.slug)),
+    author: { "@id": `${SITE_URL}/#person`, name: article.author?.name ?? "Juan Pérez" },
+    publisher: { "@id": `${SITE_URL}/#person` },
   };
 
   return (

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { HomePage } from "@/components/home-page";
 import { formatDate } from "@/components/blog-page";
 import { getDictionary, isLocale, locales } from "@/lib/i18n";
+import { absoluteUrl, homeAlternates, languageCode, SEO_KEYWORDS } from "@/lib/seo";
 import { OG_IMAGE } from "@/lib/site";
 import { getArticles, strapiMediaUrl } from "@/lib/strapi";
 
@@ -27,24 +28,25 @@ export async function generateMetadata({
   return {
     title: { absolute: title },
     description: dictionary.hero.description,
+    keywords: [...SEO_KEYWORDS, "portfolio developer", "SaaS portfolio", "Travel Tech portfolio"],
     alternates: {
-      canonical: `/${locale}`,
-      languages: { es: "/es", en: "/en", "x-default": "/es" },
+      canonical: absoluteUrl(`/${locale}`),
+      languages: homeAlternates(),
     },
     openGraph: {
       title,
       description: dictionary.hero.description,
-      url: `/${locale}`,
+      url: absoluteUrl(`/${locale}`),
       type: "profile",
-      locale: isEs ? "es_AR" : "en_US",
+      locale: languageCode(locale).replace("-", "_"),
       alternateLocale: isEs ? "en_US" : "es_AR",
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Juan Pérez — Full Stack Developer" }],
+      images: [{ url: absoluteUrl(OG_IMAGE), width: 1200, height: 630, alt: "Juan Pérez — Full Stack Developer" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: dictionary.hero.description,
-      images: [OG_IMAGE],
+      images: [absoluteUrl(OG_IMAGE)],
     },
   };
 }
