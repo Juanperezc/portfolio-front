@@ -385,6 +385,7 @@ export function HomePage({
           <div className="mb-12 space-y-4 text-center">
             <SectionBadge>{dictionary.experience.tag}</SectionBadge>
             <h2 className="font-display text-4xl font-black lg:text-5xl">{dictionary.experience.title}</h2>
+            <p className="text-muted-foreground">{dictionary.experience.description}</p>
           </div>
           <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <span className="font-mono text-xs text-muted-foreground">
@@ -409,24 +410,18 @@ export function HomePage({
           </div>
           <div className="space-y-5">
             {visibleExperience.map((item) => (
-              <Card key={`${item.company}-${item.role}`} className="card-glow border-border bg-card">
-                <CardContent className="p-6">
-                  <div className="flex flex-col justify-between gap-3 sm:flex-row">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-display text-lg font-bold">{item.role}</h3>
-                        <span className="font-semibold text-primary">@ {item.company}</span>
-                        {item.badge && <Badge>{item.badge}</Badge>}
-                      </div>
-                      <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground"><MapPin className="size-3" />{item.location} · {item.type}</p>
-                    </div>
-                    <Badge variant="outline" className="self-start font-mono text-primary">{item.period}</Badge>
-                  </div>
-                  <p className="my-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                  {item.highlight && <p className="mb-3 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs text-primary">📊 {item.highlight}</p>}
-                  <div className="flex flex-wrap gap-1.5">{item.tags.map((tag) => <Badge key={tag} variant="secondary" className="font-mono text-xs">{tag}</Badge>)}</div>
-                </CardContent>
-              </Card>
+              <ExperienceCard key={`${item.company}-${item.role}`} item={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 font-display text-3xl font-black">{dictionary.experience.collaborationsTitle}</h2>
+          <div className="space-y-5">
+            {dictionary.experience.collaborations.map((item) => (
+              <ExperienceCard key={`${item.company}-${item.role}`} item={item} />
             ))}
           </div>
         </div>
@@ -509,6 +504,29 @@ function CodeVisual({ dictionary }: { dictionary: Dictionary }) {
   );
 }
 
+function ExperienceCard({ item }: { item: Dictionary["experience"]["items"][number] }) {
+  return (
+    <Card className="card-glow border-border bg-card">
+      <CardContent className="p-6">
+        <div className="flex flex-col justify-between gap-3 sm:flex-row">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="font-display text-lg font-bold">{item.role}</h3>
+              <span className="font-semibold text-primary">@ {item.company}</span>
+              {item.badge && <Badge>{item.badge}</Badge>}
+            </div>
+            <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground"><MapPin className="size-3" />{[item.type, item.location].filter(Boolean).join(" · ")}</p>
+          </div>
+          <Badge variant="outline" className="max-w-full self-start whitespace-normal text-left font-mono leading-relaxed text-primary">{item.period}</Badge>
+        </div>
+        <p className="my-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+        {item.highlight && <p className="mb-3 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs text-primary">📊 {item.highlight}</p>}
+        <div className="flex flex-wrap gap-1.5">{item.tags.map((tag) => <Badge key={tag} variant="secondary" className="font-mono text-xs">{tag}</Badge>)}</div>
+      </CardContent>
+    </Card>
+  );
+}
+
 function ProjectFeature({ locale, dictionary, project }: { locale: Locale; dictionary: Dictionary; project: Dictionary["projects"][number] }) {
   return (
     <Card className="overflow-hidden border-border bg-card">
@@ -516,7 +534,7 @@ function ProjectFeature({ locale, dictionary, project }: { locale: Locale; dicti
       <div className="grid min-h-[500px] lg:grid-cols-2">
         <CardContent className="flex flex-col justify-between gap-8 p-8 lg:p-12">
           <div className="space-y-5">
-            <div className="flex flex-wrap items-center gap-3"><Badge style={{ background: `${project.accent}18`, color: project.accent }}>{project.number}</Badge><span className="text-xs uppercase tracking-widest text-muted-foreground">{project.category}</span><span className="text-xs text-muted-foreground">{project.year}</span></div>
+            <div className="flex flex-wrap items-center gap-3"><Badge style={{ background: `${project.accent}18`, color: project.accent }}>{project.number}</Badge><span className="text-xs uppercase tracking-widest text-muted-foreground">{project.category}</span><span className="text-xs text-muted-foreground">{project.period}</span></div>
             <h3 className="font-display text-4xl font-black lg:text-5xl">{project.name}</h3>
             <p className="leading-relaxed text-muted-foreground">{project.summary}</p>
             <div className="grid grid-cols-3 gap-3">{project.metrics.map(([value, label]) => <div key={label} className="rounded-xl p-3 text-center" style={{ background: `${project.accent}10`, border: `1px solid ${project.accent}20` }}><strong className="font-display text-xl">{value}</strong><p className="text-xs text-muted-foreground">{label}</p></div>)}</div>

@@ -142,59 +142,59 @@
     "title": "Experiencia",
     "items": [
       {
+        "role": "Full Stack Developer",
+        "company": "92118 Collective",
+        "period": "Julio 2026 – Actualidad",
+        "type": "",
+        "location": "Coronado, EE. UU. / Remoto",
+        "badge": "Actual",
+        "description": "Desarrollo la plataforma comunitaria de Coronado con flujos de eventos, RSVP, check-in por QR, paneles administrativos e integraciones con IA.",
+        "highlight": "Directorio local, eventos y comunidad en una misma plataforma",
+        "tags": ["Next.js", "TypeScript", "Supabase", "AI", "QR"]
+      },
+      {
         "role": "Web Developer",
         "company": "DevBase",
-        "period": "Mayo 2022 – Actualidad",
-        "type": "Full-Time · Remoto",
+        "period": "Mayo 2022 – Julio 2026",
+        "type": "Full-Time",
         "location": "Remoto",
-        "badge": "Actual",
+        "badge": "",
         "description": "Migré componentes clave a Next.js, lideré el rediseño e implementación de tres módulos centrales en React e integré servicios de terceros. También participé de revisiones y refactors continuos para mejorar mantenibilidad y reducir deuda técnica.",
         "highlight": "30% más velocidad de SSR · 20% más engagement · 20% menos deuda técnica",
         "tags": ["Next.js", "React", "MySQL", "Redis"]
       },
       {
-        "role": "Mobile y Full Stack Developer",
-        "company": "PLAYMIX",
-        "period": "2024 – 2025",
-        "type": "Freelance · Remoto",
-        "location": "Argentina / Remoto",
-        "badge": "Freelance",
-        "description": "Trabajé seis meses en la app de reservas de pádel: flujos de reserva de canchas en tiempo real, matchmaking por nivel y ubicación, pagos online con Stripe y Mercadopago, y sistemas de ratings y misiones.",
-        "highlight": "Apps iOS y Android · pagos multi-moneda · disponible en 9+ países",
-        "tags": ["Flutter", "Node.js", "Stripe", "Mercadopago", "WebSocket"]
-      },
-      {
         "role": "Full Stack Developer",
         "company": "WoowUp",
-        "period": "2024",
-        "type": "Freelance · Remoto",
+        "period": "2024 · 3 meses",
+        "type": "Experiencia profesional",
         "location": "Argentina / Remoto",
-        "badge": "Freelance",
+        "badge": "",
         "description": "Colaboré tres meses en el CRM omnicanal de retail: features sobre el Customer Data Platform, automatizaciones de campañas multicanal, integraciones con e-commerce y reportes de impacto online y offline.",
         "highlight": "CRM usado por 300+ marcas · 4.8 en Capterra",
         "tags": ["React", "PHP", "REST APIs", "Marketing Automation"]
       },
       {
-        "role": "Web Developer",
-        "company": "NexoAbogados.cl / Variacode",
-        "period": "Diciembre 2019 – 2022",
-        "type": "Full-Time · Remoto",
-        "location": "Chile / Remoto",
-        "badge": "",
-        "description": "Implementé autenticación con Gmail mediante JWT, optimicé servicios críticos y reestructuré la aplicación para mejorar calidad y mantenibilidad, incorporando arquitecturas sobre AWS.",
-        "highlight": "25% más accesos · 40% menos tiempo de respuesta",
-        "tags": ["Node.js", "Laravel", "React", "Next.js", "MySQL", "Redis", "AWS"]
-      },
-      {
         "role": "Tech Lead y DevOps",
         "company": "Womenly",
         "period": "Febrero 2021 – Marzo 2022",
-        "type": "Part-Time · Remoto",
+        "type": "Part-Time",
         "location": "Remoto",
         "badge": "Part-Time",
         "description": "Rediseñé la infraestructura usando Elastic Beanstalk, Route 53 y EC2. Reorganicé la estructura del proyecto e implementé pipelines CI/CD para acelerar y estabilizar los despliegues.",
         "highlight": "Despliegues más rápidos mediante CI/CD y arquitectura AWS",
         "tags": ["Laravel", "Next.js", "AWS", "GitLab", "Redis", "CI/CD"]
+      },
+      {
+        "role": "Web Developer",
+        "company": "NexoAbogados.cl / Variacode",
+        "period": "Diciembre 2019 – 2022",
+        "type": "Full-Time",
+        "location": "Chile / Remoto",
+        "badge": "",
+        "description": "Implementé autenticación con Gmail mediante JWT, optimicé servicios críticos y reestructuré la aplicación para mejorar calidad y mantenibilidad, incorporando arquitecturas sobre AWS.",
+        "highlight": "25% más accesos · 40% menos tiempo de respuesta",
+        "tags": ["Node.js", "Laravel", "React", "Next.js", "MySQL", "Redis", "AWS"]
       },
       {
         "role": "Full Stack Developer",
@@ -250,19 +250,34 @@
         "description": "Desarrollo y mantenimiento de sitios web corporativos y soluciones administrables construidas con WordPress y MySQL.",
         "highlight": "",
         "tags": ["WordPress", "PHP", "MySQL"]
+      }
+    ],
+    "collaborations": [
+      {
+        "role": "Mobile y Full Stack Developer",
+        "company": "PLAYMIX",
+        "period": "2024–2025 · 3 meses",
+        "type": "Colaboración",
+        "location": "Argentina / Remoto",
+        "badge": "Colaboración",
+        "description": "Trabajé tres meses en la app de reservas de pádel: flujos de reserva de canchas en tiempo real, matchmaking por nivel y ubicación, pagos online con Stripe y Mercadopago, y sistemas de ratings y misiones.",
+        "highlight": "Apps iOS y Android · pagos multi-moneda · disponible en 9+ países",
+        "tags": ["Flutter", "Node.js", "Stripe", "Mercadopago", "WebSocket"]
       },
       {
         "role": "WordPress Developer",
         "company": "Hygge5",
         "period": "Julio 2016 – Marzo 2017",
-        "type": "Contrato",
+        "type": "Colaboración",
         "location": "Venezuela",
-        "badge": "",
+        "badge": "Colaboración",
         "description": "Construcción, personalización y mantenimiento de sitios WordPress, temas y contenido administrable para distintos clientes.",
         "highlight": "",
         "tags": ["WordPress", "PHP", "MySQL"]
       }
-    ]
+    ],
+    "collaborationsTitle": "Colaboraciones por proyecto",
+    "description": "Trayectoria profesional, con 92118 Collective como trabajo actual desde julio de 2026."
   },
   "contact": {
     "badge": "#OpenToWork",
@@ -326,31 +341,52 @@
   },
   "projects": [
     {
-      "slug": "flightepic",
+      "slug": "92118-collective",
       "number": "01",
-      "name": "FlightEpic",
-      "category": "Travel Tech · Proyecto propio",
+      "name": "92118 Collective",
+      "category": "Plataforma comunitaria · Trabajo actual",
+      "url": "https://92118collective.com/",
+      "year": "2026",
+      "accent": "#F59E0B",
+      "gradient": "linear-gradient(135deg,#92400E,#F59E0B)",
+      "image": "/portfolio-assets/screenshots/92118-collective.webp",
+      "summary": "Plataforma para negocios locales con eventos, RSVP, check-in por QR y funcionalidades de inteligencia artificial.",
+      "overview": "Plataforma comunitaria de Coronado, California, que conecta residentes, comercios y visitantes con un directorio local, eventos, membresías y Cora, su concierge con IA.",
+      "challenge": "Gestionar eventos y asistencia con una experiencia móvil sencilla para usuarios y organizadores.",
+      "solution": "Construí flujos RSVP, check-in QR, paneles administrativos e integraciones con IA sobre Next.js y Supabase.",
+      "role": "Full Stack Developer",
+      "tags": ["Next.js", "TypeScript", "Supabase", "AI", "QR"],
+      "metrics": [["QR", "Check-in"], ["IA", "Funciones"], ["Remoto", "Colaboración"]],
+      "features": ["Gestión de eventos", "Confirmaciones RSVP", "Check-in por QR", "Panel de organizadores", "Funciones con IA", "Experiencia mobile-first"],
+      "period": "Julio 2026 – Actualidad"
+    },
+    {
+      "slug": "flightepic",
+      "number": "02",
+      "name": "FLIGHTEPIC",
+      "category": "Travel Tech · Proyecto personal · 2 h/semana",
       "url": "https://flightepic.com",
       "year": "2022 – Actualidad",
       "accent": "#38BDF8",
       "gradient": "linear-gradient(135deg,#0369A1,#38BDF8)",
       "image": "/portfolio-assets/screenshots/flightepic.webp",
       "summary": "Plataforma de vuelos desde y hacia Venezuela con más de 24 aerolíneas, pagos multi-moneda y operaciones de reserva en tiempo real.",
-      "overview": "FlightEpic centraliza búsqueda, cotización, pago y gestión de vuelos internacionales para viajeros venezolanos.",
+      "overview": "FlightEpic centraliza búsqueda, cotización, pago y gestión de vuelos internacionales para viajeros venezolanos. Proyecto personal al que dedicaba 2 horas semanales, desarrollado fuera de mi actividad laboral principal.",
       "challenge": "Conectar múltiples proveedores, mantener precios frescos, reducir fraude y aceptar métodos de pago locales e internacionales.",
       "solution": "Diseñé una arquitectura Laravel y React con caché Redis, panel operativo, CRM de leads, validación de pagos y flujos de reserva resilientes.",
-      "role": "Fundador y Full Stack Developer",
+      "role": "Creador y Full Stack Developer · Proyecto personal · 2 h/semana",
       "tags": ["Laravel", "React", "MySQL", "Redis", "AWS", "Stripe"],
       "metrics": [["1M+", "Clics en plataforma"], ["10K+", "Reservas pagadas"], ["24+", "Aerolíneas integradas"]],
-      "features": ["Integración con más de 24 aerolíneas", "Pagos con Zelle, Binance y bancos locales", "Detección de fraude en tiempo real", "Gestión de leads y CRM", "Caché Redis", "Dashboard administrativo"]
+      "features": ["Integración con más de 24 aerolíneas", "Pagos con Zelle, Binance y bancos locales", "Detección de fraude en tiempo real", "Gestión de leads y CRM", "Caché Redis", "Dashboard administrativo"],
+      "period": "2022 – Actualidad"
     },
     {
       "slug": "justfund",
-      "number": "02",
+      "number": "03",
       "name": "JustFund",
       "category": "Plataforma de gestión de subvenciones",
       "url": "https://justfund.us",
-      "year": "2021 – Actualidad",
+      "year": "2022 – 2026",
       "accent": "#34D399",
       "gradient": "linear-gradient(135deg,#065F46,#34D399)",
       "image": "/portfolio-assets/screenshots/justfund.webp",
@@ -361,15 +397,16 @@
       "role": "Full Stack Engineer",
       "tags": ["React", "TypeScript", "GraphQL", "REST API", "Storybook"],
       "metrics": [["22K+", "Organizaciones"], ["$385M+", "Capital movilizado"], ["1.100+", "Financiadores"]],
-      "features": ["Solicitudes multi-paso", "Arquitectura de guardado automático", "Filtros avanzados", "Sistema de componentes", "360K+ horas ahorradas", "250+ ciclos activos"]
+      "features": ["Solicitudes multi-paso", "Arquitectura de guardado automático", "Filtros avanzados", "Sistema de componentes", "360K+ horas ahorradas", "250+ ciclos activos"],
+      "period": "2022 – 2026"
     },
     {
       "slug": "nexo-abogados",
-      "number": "03",
+      "number": "04",
       "name": "Nexo Abogados",
-      "category": "Legal Tech · Consultoría CTO",
+      "category": "Legal Tech · Proyecto profesional",
       "url": "https://nexoabogados.cl",
-      "year": "2023 – Actualidad",
+      "year": "2019 – 2022",
       "accent": "#A78BFA",
       "gradient": "linear-gradient(135deg,#5B21B6,#A78BFA)",
       "image": "/portfolio-assets/screenshots/nexo-abogados.webp",
@@ -377,18 +414,19 @@
       "overview": "Nexo Abogados ayuda a las personas a encontrar representación legal y permite a profesionales gestionar clientes, casos, documentos y facturación.",
       "challenge": "Unificar adquisición de clientes y operación jurídica con permisos multi-estudio y automatización documental.",
       "solution": "Definí arquitectura, infraestructura y roadmap; guié la evolución de CRM, generación de PDF, agenda, facturación y control de acceso.",
-      "role": "CTO consultor Part-Time",
+      "role": "Web Developer",
       "tags": ["Laravel", "Vue.js", "MySQL", "PDF API", "Calendar", "Stripe"],
       "metrics": [["100K+", "Casos gestionados"], ["200+", "Abogados pagos"], ["20M CLP", "Ingresos mensuales"]],
-      "features": ["Gestión de expedientes", "Portal de clientes y CRM", "Generación automática de PDF", "Facturación", "Agenda de citas", "Acceso multi-estudio"]
+      "features": ["Gestión de expedientes", "Portal de clientes y CRM", "Generación automática de PDF", "Facturación", "Agenda de citas", "Acceso multi-estudio"],
+      "period": "2019 – 2022"
     },
     {
       "slug": "enviamelo",
-      "number": "04",
+      "number": "05",
       "name": "Envíamelo",
       "category": "Logística y e-commerce",
       "url": "https://www.enviamelo.com.ar/",
-      "year": "2024 – Actualidad",
+      "year": "2019",
       "accent": "#38BDF8",
       "gradient": "linear-gradient(135deg,#0369A1,#38BDF8)",
       "image": "/portfolio-assets/screenshots/enviamelo.webp",
@@ -399,26 +437,8 @@
       "role": "Full Stack Developer",
       "tags": ["Laravel", "React", "APIs", "Logística"],
       "metrics": [["E-commerce", "Industria"], ["Argentina", "Mercado"], ["Tracking", "Operación"]],
-      "features": ["Cotización de envíos", "Gestión de órdenes", "Seguimiento de paquetes", "Integración con operadores", "Panel de operaciones", "Flujos para e-commerce"]
-    },
-    {
-      "slug": "92118-collective",
-      "number": "05",
-      "name": "92118 Collective",
-      "category": "Plataforma comunitaria",
-      "url": "https://92118collective.com/",
-      "year": "2023 – Actualidad",
-      "accent": "#F59E0B",
-      "gradient": "linear-gradient(135deg,#92400E,#F59E0B)",
-      "image": "/portfolio-assets/screenshots/92118-collective.webp",
-      "summary": "Plataforma para negocios locales con eventos, RSVP, check-in por QR y funcionalidades de inteligencia artificial.",
-      "overview": "Una experiencia comunitaria digital para conectar comercios, residentes y eventos locales.",
-      "challenge": "Gestionar eventos y asistencia con una experiencia móvil sencilla para usuarios y organizadores.",
-      "solution": "Construí flujos RSVP, check-in QR, paneles administrativos e integraciones con IA sobre Next.js y Supabase.",
-      "role": "Full Stack Developer",
-      "tags": ["Next.js", "TypeScript", "Supabase", "AI", "QR"],
-      "metrics": [["QR", "Check-in"], ["IA", "Funciones"], ["Remoto", "Colaboración"]],
-      "features": ["Gestión de eventos", "Confirmaciones RSVP", "Check-in por QR", "Panel de organizadores", "Funciones con IA", "Experiencia mobile-first"]
+      "features": ["Cotización de envíos", "Gestión de órdenes", "Seguimiento de paquetes", "Integración con operadores", "Panel de operaciones", "Flujos para e-commerce"],
+      "period": "2019"
     },
     {
       "slug": "zaga-system",
@@ -437,15 +457,16 @@
       "role": "Mobile y Backend Developer",
       "tags": ["Laravel", "Node.js", "Ionic", "WebSocket", "Push Notifications", "MySQL"],
       "metrics": [["iOS", "SmartMarket en una semana"], ["-40%", "Respuesta en ZagaTaxi"], ["+50%", "Performance en ZagaSport"]],
-      "features": ["Marketplace SmartMarket en iOS", "Asignación automática en ZagaTaxi", "Tiempo real en ZagaSport", "Notificaciones push", "Concurrencia WebSocket", "Backends en Laravel y Node.js"]
+      "features": ["Marketplace SmartMarket en iOS", "Asignación automática en ZagaTaxi", "Tiempo real en ZagaSport", "Notificaciones push", "Concurrencia WebSocket", "Backends en Laravel y Node.js"],
+      "period": "2018 – 2019"
     },
     {
       "slug": "woowup",
       "number": "07",
       "name": "WoowUp",
-      "category": "Retail CRM · Marketing omnicanal",
+      "category": "CRM de retail · Experiencia profesional",
       "url": "https://www.woowup.com/",
-      "year": "2024 · Freelance",
+      "year": "2024 · 3 meses",
       "accent": "#F43F5E",
       "gradient": "linear-gradient(135deg,#9F1239,#F43F5E)",
       "image": "/portfolio-assets/screenshots/woowup.webp",
@@ -453,10 +474,11 @@
       "overview": "Colaboré como freelance durante tres meses en WoowUp, la plataforma de marketing omnicanal usada por más de 300 marcas de retail.",
       "challenge": "Unificar los datos de clientes online y offline y orquestar campañas personalizadas multicanal a gran escala.",
       "solution": "Desarrollé features sobre el Customer Data Platform, automatizaciones de campañas, integraciones con e-commerce y reportes de impacto en ventas.",
-      "role": "Full Stack Developer (Freelance)",
+      "role": "Full Stack Developer",
       "tags": ["React", "PHP", "REST APIs", "Marketing Automation", "Integraciones"],
       "metrics": [["300+", "Marcas en la plataforma"], ["4.8", "Rating en Capterra"], ["Omnicanal", "Online + tienda física"]],
-      "features": ["Customer Data Platform", "Campañas multicanal (email, SMS, push)", "Automatización de marketing", "Analítica de impacto online y offline", "Integraciones con e-commerce", "Módulo especializado para farmacias"]
+      "features": ["Customer Data Platform", "Campañas multicanal (email, SMS, push)", "Automatización de marketing", "Analítica de impacto online y offline", "Integraciones con e-commerce", "Módulo especializado para farmacias"],
+      "period": "2024 · 3 meses"
     },
     {
       "slug": "playmix",
@@ -464,18 +486,19 @@
       "name": "PLAYMIX",
       "category": "App móvil · Deportes y reservas",
       "url": "https://playmix.pro/",
-      "year": "2024 – 2025 · Freelance",
+      "year": "2024–2025 · Colaboración de 3 meses",
       "accent": "#22D3EE",
       "gradient": "linear-gradient(135deg,#0E7490,#22D3EE)",
       "image": "/portfolio-assets/screenshots/playmix.webp",
       "summary": "App móvil para reservar canchas, jugar pádel y organizar partidos con jugadores de tu nivel.",
-      "overview": "Trabajé como freelance durante seis meses en PLAYMIX, una app móvil que conecta jugadores de pádel, clubes y entrenadores en más de 9 países.",
+      "overview": "Trabajé como freelance durante tres meses en PLAYMIX, una app móvil que conecta jugadores de pádel, clubes y entrenadores en más de 9 países.",
       "challenge": "Ofrecer reservas de canchas en tiempo real, emparejar jugadores por nivel y ubicación, y procesar pagos en múltiples monedas.",
       "solution": "Implementé apps nativas iOS y Android con backend en tiempo real, pagos con Stripe y Mercadopago, ratings y un sistema de misiones y progreso.",
-      "role": "Mobile y Full Stack Developer (Freelance)",
+      "role": "Mobile y Full Stack Developer · Colaboración",
       "tags": ["Flutter", "Node.js", "Stripe", "Mercadopago", "WebSocket"],
       "metrics": [["iOS + Android", "Apps nativas"], ["9+", "Países"], ["Stripe + MP", "Pagos multi-moneda"]],
-      "features": ["Reserva de canchas en tiempo real", "Matchmaking por nivel y ubicación", "Pagos online (Stripe y Mercadopago)", "Ratings de jugadores, clubes y entrenadores", "Sistema de misiones y progreso", "Perfiles de entrenadores con reservas"]
+      "features": ["Reserva de canchas en tiempo real", "Matchmaking por nivel y ubicación", "Pagos online (Stripe y Mercadopago)", "Ratings de jugadores, clubes y entrenadores", "Sistema de misiones y progreso", "Perfiles de entrenadores con reservas"],
+      "period": "2024–2025 · Colaboración de 3 meses"
     }
   ]
 }

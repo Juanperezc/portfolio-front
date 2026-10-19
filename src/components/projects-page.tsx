@@ -46,7 +46,7 @@ export function ProjectsPage({
                     <Badge style={{ background: `${project.accent}18`, color: project.accent }}>
                       {project.number}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">{project.year}</span>
+                    <span className="text-xs text-muted-foreground">{project.period}</span>
                   </div>
                   <p className="text-xs font-bold uppercase tracking-widest" style={{ color: project.accent }}>
                     {project.category}

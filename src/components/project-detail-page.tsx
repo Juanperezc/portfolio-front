@@ -28,7 +28,7 @@ export function ProjectDetailPage({
     inLanguage: languageCode(locale),
     creator: { "@id": `${SITE_URL}/#person` },
     keywords: project.tags.join(", "),
-    dateCreated: project.year,
+    dateCreated: project.year.slice(0, 4),
     genre: project.category,
     sameAs: project.url || undefined,
   };
@@ -99,7 +99,7 @@ export function ProjectDetailPage({
         <div className="mt-20 grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="space-y-8">
             <DetailBlock title={dictionary.projectDetail.role} text={project.role} />
-            <DetailBlock title={dictionary.projectDetail.year} text={project.year} />
+            <DetailBlock title={dictionary.projectDetail.year} text={project.period} />
             <div>
               <h2 className="text-xs font-bold uppercase tracking-widest text-primary">{dictionary.common.technologies}</h2>
               <div className="mt-4 flex flex-wrap gap-2">{project.tags.map((tag) => <Badge key={tag} variant="outline">{tag}</Badge>)}</div>
